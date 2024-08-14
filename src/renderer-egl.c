@@ -527,6 +527,8 @@ void render_av_frames_egl(struct buffer* dst, struct vnc_av_frame** src,
 		GLuint tex = texture_from_av_frame(frame->frame);
 		glBindTexture(GL_TEXTURE_EXTERNAL_OES, tex);
 
+		if (fmod(scale,1.0) == 0.0)
+			glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		gl_draw();
 
 		glBindTexture(GL_TEXTURE_EXTERNAL_OES, 0);
